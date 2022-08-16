@@ -1,0 +1,20 @@
+Package: magneto
+Type: Package
+Title: The building blocks for digitization of magnetograms, or images
+        alike
+Version: 0.9.9.0
+Author: Benjamin Ott, with contributions from Mark Weygang and Wesley Burr
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: Uses TIS(Trace Identification Through Separation).  We wanted to make
+  the functions into building blocks so people can use each part individually to hopefully
+  aid in the digitizations for different types of images, rather then just magnetograms.
+License: file LICENSE
+Encoding: UTF-8
+Suggests: covr, knitr, rmarkdown
+RoxygenNote: 7.1.1
+Depends: R (>= 3.5.0), pixmap
+Imports: tiff, testthat, stats, reticulate, graphics, fs, stats,
+        OpenImageR, zoo, grDevices
+SystemRequirements: Python
+NeedsCompilation: no
+Packaged: 2022-03-03 18:01:44 UTC; wburr
