@@ -564,38 +564,32 @@
 #'
 #' @return vector of all occurrences lengths of each sequence and the index of each start
 .find_a_number <- function(vector, specNumber){
-  StartIndex = vector()
-  Length = vector()
-  foundZero <- FALSE
-  counter <- 0
-
-  for (i in 1:length(vector)) {
-    # last diff is specNumber in vector
-    if (i == length(vector) & vector[i] == specNumber) {
-      if (counter == specNumber) { #this is the first specNumber found in a while
-        Length <- append(Length, 1)
-        StartIndex <- append(StartIndex, i)
-      }
-      else {# this isnt the first specNumber found in a while i.e specNumber,specNumber,specNumber,specNumber,(this one)
-        Length <- append(Length, counter)
+  start_index <- Length <- vector()
+  found <- FALSE
+  count <- 0
+  for(i in 1:length(vector)){
+    if(vector[i] == specNumber & isTRUE(found)){
+      count <- count + 1
+      if(i == length(vector)){
+        Length <- c(Length, count)
       }
     }
-    else if (isTRUE(foundZero) & vector[i] == specNumber) { # found another specNumber in a row
-      counter <- counter + 1
+    else if(vector[i] == specNumber){
+      start_index <- c(start_index, i)
+      if(i == length(vector)){
+        Length <- c(Length, 1)
+      }
+      else {
+        count <- 1
+        found <- TRUE
+      }
     }
-    else if (isTRUE(foundZero)) { #end of the specNumber sequence
-      Length <- append(Length, counter)
-      foundZero = FALSE
-      counter = specNumber
-    }
-    else if (isFALSE(foundZero) & vector[i] == specNumber) { #first specNumber found for a new sequence
-      StartIndex <- append(StartIndex, i)
-      foundZero <- TRUE
-      counter <- 1
+    else if(isTRUE(found)) {
+      Length <- c(Length, count)
+      found <- FALSE
     }
   }
-  zeros <- data.frame(StartIndex = StartIndex, RunLength = Length)
-  return(zeros)
+  return(data.frame(StartIndex = start_index, RunLength = Length))
 }
 
 

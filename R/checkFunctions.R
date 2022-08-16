@@ -131,9 +131,9 @@ not_empty_file <- function(filePath, fileName){
   imageType <- splitName[[1]][3]
   imageTypePosition2 <- splitName[[1]][2]
   if (imageType == "HDV" || imageType == "HDZ" || imageType == "ZDH" || imageType == "H D and V"
-      || imageType == "V D and H" || is.na(imageType) || imageTypePosition2 == "HDV" ||
+      || imageType == "V D and H" || imageType == "A" || imageType == "B" || imageType == "C" || is.na(imageType) || imageTypePosition2 == "HDV" ||
       imageTypePosition2 == "HDZ" || imageTypePosition2 == "ZDH" ||
-      imageTypePosition2 == "H D and V" || imageTypePosition2 == "V D and H" || is.na(imageTypePosition2)) {
+      imageTypePosition2 == "H D and V" || imageTypePosition2 == "V D and H" || imageTypePosition2 == "A" || imageTypePosition2 == "B" || imageTypePosition2 == "C" || is.na(imageTypePosition2)) {
     return(warning("This image is a HDV or HDZ"))
   }
 }
